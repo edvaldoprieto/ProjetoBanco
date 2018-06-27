@@ -10,12 +10,18 @@ create table users (
 insert into users values (default, 'admin', 'admin', 'admin', 102030);
 insert into users values (default, 'operador', 'Zezao', 'operador', 102030);
 
-create table alunos (
+create table aluno (
     matricula int not null primary key, 
     nomeAluno varchar(200) not null,
     cpfAluno int not null, 
-    responsavelAluno int not null
-    
+    responsavelAluno int not null,
+    prova1 double precision, 
+    prova2 double precision 
 );
 
-select * from users
+
+
+
+drop table aluno
+select * from aluno
+
