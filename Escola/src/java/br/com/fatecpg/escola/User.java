@@ -1,6 +1,8 @@
 
 package br.com.fatecpg.escola;
 
+import java.util.ArrayList;
+
 public class User {
  
     
@@ -58,5 +60,21 @@ public class User {
         this.passwordHash = passwordHash;
     }
     
-    
+    public static User getUser(String login, String pass)
+            throws Exception{
+        String SQL = "SELECT * FROM USERS " + "WHERE login = ? AND passwordhash = ?";
+        Object parameters[] = {login, pass.hashCode()};
+        ArrayList<Object[]> list = DatabaseConector.getQuery(SQL, parameters);
+        if(list.size()==0){
+            return null;
+        }else{
+            Object row[] = list.get(0);
+            User u = new User ((long)row[0]
+                                ,(String)row[1]
+                                ,(String)row[2]
+                                ,(String)row[3]
+                                ,(long) row[4]);
+            return u;
+        }
+    }
 }
